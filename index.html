@@ -5,28 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cookie Consent Testseite</title>
     <style>
-            /* CSS für das Cookie-Consent-Banner */
-#cookieBanner {
-    background-color: #fff;
-    border-top: 1px solid #ccc;
-    color: #000;
-    font-size: 14px;
-}
+        /* CSS für das Cookie-Consent-Banner */
+        #cookieBanner {
+            background-color: #fff;
+            border-top: 1px solid #ccc;
+            color: #000;
+            font-size: 14px;
+        }
 
-#cookieBanner button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-}
+        #cookieBanner button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
 
-#cookieBanner button:hover {
-    background-color: #0056b3;
-}
-        </style>
-    </head>
-    
+        #cookieBanner button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <!-- Cookie-Consent-Banner -->
@@ -35,12 +33,9 @@
             Wir verwenden Cookies, um Ihr Erlebnis auf unserer Website zu verbessern. Einige Daten werden an Drittanbieter (z.B. Voiceflow) übermittelt.
             <a href="/datenschutz" target="_blank">Mehr erfahren</a>
         </p>
-    <button id="acceptCookies" style="margin-right: 10px;">Akzeptieren</button>
-    <button id="declineCookies">Ablehnen</button>
+        <button id="acceptCookies" style="margin-right: 10px;">Akzeptieren</button>
+        <button id="declineCookies">Ablehnen</button>
     </div>
-
-   
-    
 
     <!-- JavaScript zur Steuerung des Cookie-Banners -->
     <script>
@@ -66,13 +61,20 @@
     });
 
     function loadVoiceflowScript() {
-            console.log('Voiceflow-Skript wird geladen');
-            var script = document.createElement('script');
-            script.src = 'https://creator.voiceflow.com/embed/66e597b57af498a717cb0132'; 
-            document.body.appendChild(script);
-}
+        console.log('Voiceflow-Skript wird geladen');
+        var script = document.createElement('script');
+        // Hier wird der CORS-Proxy verwendet
+        script.src = 'https://cors-anywhere.herokuapp.com/https://cdn.voiceflow.com/widget/bundle.mjs';
+        script.onload = function() {
+            window.voiceflow.chat.load({
+                verify: { projectID: '66cd9b07fa8572fbb856b6c7' }, // Deine Projekt-ID
+                url: 'https://general-runtime.voiceflow.com',
+                versionID: 'production'
+            });
+        };
+        document.body.appendChild(script);
+    }
+    </script>
 
-   </script>
 </body>
 </html>
-
