@@ -64,7 +64,7 @@
         console.log('Voiceflow-Skript wird geladen');
         var script = document.createElement('script');
         // Hier wird der CORS-Proxy verwendet
-        script.src = 'https://thingproxy.freeboard.io/fetch/https://cdn.voiceflow.com/widget/bundle.mjs';
+        script.src = 'https://api.allorigins.win/raw?url=https://cdn.voiceflow.com/widget/bundle.mjs';
             script.onload = function() {
             window.voiceflow.chat.load({
                 verify: { projectID: '66cd9b07fa8572fbb856b6c7' }, // Deine Projekt-ID
