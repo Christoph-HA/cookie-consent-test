@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Consent Testseite</title>
+    <style>
+            /* CSS für das Cookie-Consent-Banner */
+#cookieBanner {
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    color: #000;
+    font-size: 14px;
+}
+
+#cookieBanner button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#cookieBanner button:hover {
+    background-color: #0056b3;
+}
+        </style>
+    </head>
+    
+</head>
+<body>
+    <!-- Cookie-Consent-Banner -->
+    <div id="cookieBanner" style="position: fixed; bottom: 0; width: 100%; background-color: #f8f9fa; padding: 10px; text-align: center; display: none;">
+        <p>
+            Wir verwenden Cookies, um Ihr Erlebnis auf unserer Website zu verbessern. Einige Daten werden an Drittanbieter (z.B. Voiceflow) übermittelt.
+            <a href="/datenschutz" target="_blank">Mehr erfahren</a>
+        </p>
+    <button id="acceptCookies" style="margin-right: 10px;">Akzeptieren</button>
+    <button id="declineCookies">Ablehnen</button>
+    </div>
+
+   
+    
+
+    <!-- JavaScript zur Steuerung des Cookie-Banners -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var cookieConsent = localStorage.getItem('cookieConsent');
+        
+        if (!cookieConsent) {
+            document.getElementById('cookieBanner').style.display = 'block';
+        } else if (cookieConsent === 'accepted') {
+            loadVoiceflowScript(); // Voiceflow-Skript wird geladen
+        }
+        
+        document.getElementById('acceptCookies').addEventListener('click', function () {
+            localStorage.setItem('cookieConsent', 'accepted');
+            document.getElementById('cookieBanner').style.display = 'none';
+            loadVoiceflowScript(); // Voiceflow-Skript wird geladen
+        });
+
+        document.getElementById('declineCookies').addEventListener('click', function () {
+            localStorage.setItem('cookieConsent', 'declined');
+            document.getElementById('cookieBanner').style.display = 'none';
+        });
+    });
+
+    function loadVoiceflowScript() {
+            console.log('Voiceflow-Skript wird geladen');
+            var script = document.createElement('script');
+            script.src = 'https://creator.voiceflow.com/embed/66cd9b07fa8572fbb856b6c7'; 
+            document.body.appendChild(script);
+}
+
+   </script>
+</body>
+</html>
+
