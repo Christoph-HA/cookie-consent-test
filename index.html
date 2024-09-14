@@ -39,27 +39,49 @@
 
     <!-- JavaScript zur Steuerung des Cookie-Banners -->
     <script>
+    // Funktion zum Setzen des Cookies mit Ablaufdatum
+    function setCookieWithExpiry(name, value, days) {
+        var now = new Date();
+        now.setTime(now.getTime() + (days * 24 * 60 * 60 * 1000)); // Tage in Millisekunden
+        localStorage.setItem(name, JSON.stringify({ value: value, expiry: now.getTime() }));
+    }
+
+    // Funktion zum Überprüfen und Abrufen des Cookies mit Ablaufdatum
+    function getCookieWithExpiry(name) {
+        var itemStr = localStorage.getItem(name);
+        if (!itemStr) {
+            return null;
+        }
+        var item = JSON.parse(itemStr);
+        if (new Date().getTime() > item.expiry) {
+            localStorage.removeItem(name); // Lösche abgelaufene Cookies
+            return null;
+        }
+        return item.value;
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
-        var cookieConsent = localStorage.getItem('cookieConsent');
-        
+        var cookieConsent = getCookieWithExpiry('cookieConsent');
+
         if (!cookieConsent) {
             document.getElementById('cookieBanner').style.display = 'block';
         } else if (cookieConsent === 'accepted') {
             loadVoiceflowScript(); // Voiceflow-Skript wird geladen
         }
-        
+
         document.getElementById('acceptCookies').addEventListener('click', function () {
-            localStorage.setItem('cookieConsent', 'accepted');
+            setCookieWithExpiry('cookieConsent', 'accepted', 1); // Cookie für 1 Tag setzen
             document.getElementById('cookieBanner').style.display = 'none';
             loadVoiceflowScript(); // Voiceflow-Skript wird geladen
         });
 
         document.getElementById('declineCookies').addEventListener('click', function () {
-            localStorage.setItem('cookieConsent', 'declined');
+            setCookieWithExpiry('cookieConsent', 'declined', 1); // Cookie für 1 Tag setzen
             document.getElementById('cookieBanner').style.display = 'none';
         });
     });
 
+    // Funktion zum Laden des Voiceflow-Skripts
     function loadVoiceflowScript() {
         console.log('Voiceflow-Skript wird geladen');
         var script = document.createElement('script');
@@ -78,4 +100,5 @@
 
 </body>
 </html>
+
 
