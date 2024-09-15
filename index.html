@@ -3,14 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cookie Consent Testseite</title>
+    <title>Cookie Consent mit KI-Chatbot</title>
     <style>
-        /* CSS für das Cookie-Consent-Banner */
+        /* Stil für das Cookie-Banner */
         #cookieBanner {
             background-color: #fff;
             border-top: 1px solid #ccc;
             color: #000;
             font-size: 14px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: none;
+            z-index: 999;
+            padding: 10px;
+            text-align: center;
         }
 
         #cookieBanner button {
@@ -24,21 +31,62 @@
         #cookieBanner button:hover {
             background-color: #0056b3;
         }
+
+        /* Stil für den fixierten Sprechblasen-Button */
+        #chatButton {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 70px;   /* Größe des Buttons */
+            height: 70px;  /* Größe des Buttons */
+            background-color: #000;  /* Hintergrundfarbe */
+            color: #fff;  /* Textfarbe */
+            font-size: 20px; /* Schriftgröße im Button */
+            font-weight: bold; /* Text fett */
+            text-align: center;
+            line-height: 70px; /* Vertikale Zentrierung */
+            border-radius: 50%;  /* Rundung für die Sprechblasenform */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Schatteneffekt */
+            cursor: pointer;
+            z-index: 1000;  /* Über alle anderen Elemente legen */
+        }
+
+        /* Stil für den Sprechblasen-Pfeil */
+        #chatButton::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;  /* Position unterhalb des Buttons */
+            left: 20px;  /* Pfeil weiter zur linken Seite */
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;  /* Transparente Umrandung für den Pfeil */
+            border-top-color: #000;  /* Farbe für den Pfeil */
+        }
     </style>
 </head>
 <body>
+
+    <!-- Sprechblasen-Button -->
+    <div id="chatButton" onclick="showCookieBanner()" title="KI-Chat">
+        KI
+    </div>
+
     <!-- Cookie-Consent-Banner -->
-    <div id="cookieBanner" style="position: fixed; bottom: 0; width: 100%; background-color: #f8f9fa; padding: 10px; text-align: center; display: none;">
-        <p>
-            Wir verwenden Cookies, um Ihr Erlebnis auf unserer Website zu verbessern. Einige Daten werden an Drittanbieter (z.B. Voiceflow) übermittelt.
+    <div id="cookieBanner">
+        <p>Wir verwenden Cookies, um Ihr Erlebnis auf unserer Website zu verbessern. Einige Daten werden an Drittanbieter (z.B. Voiceflow) übermittelt.
             <a href="/datenschutz" target="_blank">Mehr erfahren</a>
         </p>
         <button id="acceptCookies" style="margin-right: 10px;">Akzeptieren</button>
         <button id="declineCookies">Ablehnen</button>
     </div>
 
-    <!-- JavaScript zur Steuerung des Cookie-Banners -->
+    <!-- JavaScript zur Steuerung -->
     <script>
+    // Funktion, um den Cookie-Banner anzuzeigen
+    function showCookieBanner() {
+        document.getElementById('cookieBanner').style.display = 'block';
+    }
+
     // Funktion zum Setzen des Cookies mit Ablaufdatum
     function setCookieWithExpiry(name, value, days) {
         var now = new Date();
@@ -100,5 +148,3 @@
 
 </body>
 </html>
-
-
