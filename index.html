@@ -88,8 +88,15 @@
         }
 
         function loadVoiceflowScript() {
+            console.log('Versuche, das Voiceflow-Skript zu laden');
             var script = document.createElement('script');
             script.src = 'https://creator.voiceflow.com/embed/66cd9b07fa8572fbb856b6c7';  // Hier ist die Voiceflow-Projekt-ID korrekt eingesetzt
+            script.onload = function() {
+                console.log('Voiceflow-Skript erfolgreich geladen');
+            };
+            script.onerror = function() {
+                console.log('Fehler beim Laden des Voiceflow-Skripts');
+            };
             document.body.appendChild(script);
         }
 
