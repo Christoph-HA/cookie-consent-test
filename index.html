@@ -81,7 +81,7 @@
     <!-- Sprechblasen-Button (KI-Assistent) -->
     <div id="chatButton" onclick="showCookieBanner()" title="KI-Assistent">
         KI<br>Assistent
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0BAMAAADP4xsBAAAAMFBMVEUAlNf///8ArOGx5fYAm9ns+PYzudUApNQXntIEq+I8w9NYyN9ozdqV2ePAAAAA3RSTlMA+/v7+/v7+/v7KIpGoZgAAAGnSURBVHgB7dfBCQAgFETRqbpUVtqxRfp7nA0I1Ro+/hXyQGBw/H4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eH
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0BAMAAADP4xsBAAAAMFBMVEUAlNf///8ArOGx5fYAm9ns+PYzudUApNQXntIEq+I8w9NYyN9ozdqV2ePAAAAA3RSTlMA+/v7+/v7+/v7KIpGoZgAAAGnSURBVHgB7dfBCQAgFETRqbpUVtqxRfp7nA0I1Ro+/hXyQGBw/H4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4e
     <!-- Cookie-Consent-Banner -->
     <div id="cookieBanner">
         <p>Wir verwenden Cookies, um Ihr Erlebnis auf unserer Website zu verbessern. Einige Daten werden an Drittanbieter (z.B. Voiceflow) übermittelt.
@@ -123,13 +123,17 @@
     document.addEventListener('DOMContentLoaded', function () {
         var cookieConsent = getCookieWithExpiry('cookieConsent');
 
+        // Zuerst prüfen, ob keine Zustimmung vorhanden ist, und nur dann den KI-Assistenten anzeigen
+        if (!cookieConsent) {
+            document.getElementById('chatButton').style.display = 'block'; // KI-Assistent Button anzeigen
+        }
+
         // Überprüfen, ob der Benutzer bereits zugestimmt hat
         if (cookieConsent === 'accepted') {
-            document.getElementById('chatButton').style.display = 'none'; // KI-Assistent Button sofort verstecken
             loadVoiceflowScript(); // Voiceflow-Agent laden
         }
 
-        // Wenn der Benutzer "Nein" gesagt hat, den KI-Assistent Button erneut anzeigen
+        // Wenn der Benutzer "Nein" gesagt hat, bleibt der KI-Assistent Button sichtbar
         if (cookieConsent === 'declined') {
             document.getElementById('chatButton').style.display = 'block'; // KI-Assistent Button anzeigen
         }
