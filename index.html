@@ -82,7 +82,7 @@
     </div>
 
     <!-- JavaScript zur Steuerung des Cookie-Banners -->
-    <script>
+        <script>
         function showCookieBanner() {
             document.getElementById('cookieBanner').style.display = 'block';
         }
@@ -90,7 +90,8 @@
         function loadVoiceflowScript() {
             console.log('Versuche, das Voiceflow-Skript zu laden');
             var script = document.createElement('script');
-            script.src = 'https://api.allorigins.win/raw?url=https://creator.voiceflow.com/embed/66cd9b07fa8572fbb856b6c7';  // Verwende einen anderen CORS-Proxy
+            // Verwende einen anderen CORS-Proxy, der keine speziellen Header erfordert
+            script.src = 'https://api.allorigins.win/raw?url=https://creator.voiceflow.com/embed/66cd9b07fa8572fbb856b6c7';
             script.onload = function() {
                 console.log('Voiceflow-Skript erfolgreich geladen');
             };
