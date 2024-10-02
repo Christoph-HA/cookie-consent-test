@@ -90,7 +90,7 @@
         function loadVoiceflowScript() {
             console.log('Versuche, das Voiceflow-Skript zu laden');
             var script = document.createElement('script');
-            script.src = 'https://cors-anywhere.herokuapp.com/https://creator.voiceflow.com/embed/66cd9b07fa8572fbb856b6c7';  // CORS-Proxy verwendet
+            script.src = 'https://api.allorigins.win/raw?url=https://creator.voiceflow.com/embed/66cd9b07fa8572fbb856b6c7';  // Verwende einen anderen CORS-Proxy
             script.onload = function() {
                 console.log('Voiceflow-Skript erfolgreich geladen');
             };
@@ -111,6 +111,5 @@
             document.getElementById('cookieBanner').style.display = 'none';
         });
     </script>
-
     </body>
 </html>
