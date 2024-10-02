@@ -32,7 +32,7 @@
             background-color: #0056b3;
         }
 
-        /* Stil für den fixierten Sprechblasen-Button (KI-Assistent Button) */
+        /* Stil für den fixierten KI-Assistenten-Button */
         #chatButton {
             position: fixed;
             bottom: 20px;
@@ -54,28 +54,13 @@
             justify-content: center;
         }
 
-        /* Stil für den Sprechblasen-Pfeil */
-        #chatButton::before {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border: 10px solid transparent;
-            border-top-color: #000;
-        }
-
-        /* Stil für das eingebettete Bild */
         #chatButton img {
-            width: 40%;
+            width: 50%;
             height: auto;
-            pointer-events: none;
             margin-top: 5px;
+            pointer-events: none; /* Verhindert, dass das Bild anklickbar ist */
         }
 
-        /* Stil für den Text im Button */
         #chatButton span {
             line-height: 1.2;
         }
@@ -84,9 +69,9 @@
 <body>
 
     <!-- Sprechblasen-Button (KI-Assistent) -->
-    <div id="chatButton" onclick="showCookieBanner()" title="KI-Assistent">
+    <div id="chatButton" onclick="showCookieBanner()">
         <span>KI<br>Assistent</span> <!-- Text für KI-Assistent -->
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0BAMAAADP4xsBAAAAMFBMVEUAlNf///8ArOGx5fYAm9ns+PYzudUApNQXntIEq+I8w9NYyN9ozdqV2ePAAAAA3RSTlMA+/v7+/v7+/v7KIpGoZgAAAGnSURBVHgB7dfBCQAgFETRqbpUVtqxRfp7nA0I1Ro+/hXyQGBw/H4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4e
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0BAMAAADP4xsBAAAAMFBMVEUAlNf///8ArOGx5fYAm9ns+PYzudUApNQXntIEq+I8w9NYyN9ozdqV2ePAAAAA3RSTlMA+/v7+/v7+/v7KIpGoZgAAAGnSURBVHgB7dfBCQAgFETRqbpUVtqxRfp7nA0I1Ro+/hXyQGBw/H4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4e
     <!-- Cookie-Consent-Banner -->
     <div id="cookieBanner">
         <p>Wir verwenden Cookies, um Ihr Erlebnis auf unserer Website zu verbessern. Einige Daten werden an Drittanbieter (z.B. Voiceflow) übermittelt.
