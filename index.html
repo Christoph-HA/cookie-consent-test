@@ -14,7 +14,7 @@
             position: fixed;
             bottom: 0;
             width: 100%;
-            display: none;
+            display: none; /* Banner versteckt, bis es benötigt wird */
             z-index: 999;
             padding: 10px;
             text-align: center;
@@ -47,13 +47,14 @@
             border-radius: 50%;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             cursor: pointer;
-            z-index: 1000;
+            z-index: 1000; /* Button liegt über allen anderen Elementen */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
 
+        /* Stil für das Bild */
         #chatButton img {
             width: 50%;
             height: auto;
@@ -61,6 +62,7 @@
             pointer-events: none; /* Verhindert, dass das Bild anklickbar ist */
         }
 
+        /* Stil für den Text im Button */
         #chatButton span {
             line-height: 1.2;
         }
@@ -68,10 +70,10 @@
 </head>
 <body>
 
-    <!-- Sprechblasen-Button (KI-Assistent) -->
-    <div id="chatButton" onclick="showCookieBanner()">
-        <span>KI<br>Assistent</span> <!-- Text für KI-Assistent -->
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0BAMAAADP4xsBAAAAMFBMVEUAlNf///8ArOGx5fYAm9ns+PYzudUApNQXntIEq+I8w9NYyN9ozdqV2ePAAAAA3RSTlMA+/v7+/v7+/v7KIpGoZgAAAGnSURBVHgB7dfBCQAgFETRqbpUVtqxRfp7nA0I1Ro+/hXyQGBw/H4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4e
+    <!-- KI-Assistent-Button -->
+    <div id="chatButton">
+        <span>KI<br>Assistent</span>
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0BAMAAADP4xsBAAAAMFBMVEUAlNf///8ArOGx5fYAm9ns+PYzudUApNQXntIEq+I8w9NYyN9ozdqV2ePAAAAA3RSTlMA+/v7+/v7+/v7KIpGoZgAAAGnSURBVHgB7dfBCQAgFETRqbpUVtqxRfp7nA0I1Ro+/hXyQGBw/H4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4e
     <!-- Cookie-Consent-Banner -->
     <div id="cookieBanner">
         <p>Wir verwenden Cookies, um Ihr Erlebnis auf unserer Website zu verbessern. Einige Daten werden an Drittanbieter (z.B. Voiceflow) übermittelt.
