@@ -82,29 +82,30 @@
     </div>
 
     <!-- JavaScript zur Steuerung des Cookie-Banners -->
-        <script>
+           <script>
         function showCookieBanner() {
             document.getElementById('cookieBanner').style.display = 'block';
         }
 
         function loadVoiceflowScript() {
-            console.log('Versuche, das Voiceflow-Skript zu laden');
-            var script = document.createElement('script');
-            // Verwende einen anderen CORS-Proxy, der keine speziellen Header erfordert
-            script.src = 'https://api.allorigins.win/raw?url=https://creator.voiceflow.com/embed/66cd9b07fa8572fbb856b6c7';
-            script.onload = function() {
-                console.log('Voiceflow-Skript erfolgreich geladen');
-            };
-            script.onerror = function() {
-                console.log('Fehler beim Laden des Voiceflow-Skripts');
-            };
-            document.body.appendChild(script);
+            console.log('Versuche, das Voiceflow-Skript zu laden mit Verzögerung');
+            setTimeout(function() {
+                var script = document.createElement('script');
+                script.src = 'https://api.allorigins.win/raw?url=https://creator.voiceflow.com/embed/66cd9b07fa8572fbb856b6c7';  // Verwende einen CORS-Proxy
+                script.onload = function() {
+                    console.log('Voiceflow-Skript erfolgreich geladen');
+                };
+                script.onerror = function() {
+                    console.log('Fehler beim Laden des Voiceflow-Skripts');
+                };
+                document.body.appendChild(script);
+            }, 2000); // 2 Sekunden Verzögerung
         }
 
         document.getElementById('acceptCookies').addEventListener('click', function () {
             // Cookies akzeptiert, der Cookie-Banner verschwindet
             document.getElementById('cookieBanner').style.display = 'none';
-            loadVoiceflowScript(); // Voiceflow-Skript wird geladen
+            loadVoiceflowScript(); // Voiceflow-Skript wird mit Verzögerung geladen
         });
 
         document.getElementById('declineCookies').addEventListener('click', function () {
