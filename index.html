@@ -14,8 +14,8 @@
             position: fixed;
             bottom: 0;
             width: 100%;
-            display: none; /* Banner versteckt, bis es benötigt wird */
-            z-index: 999;
+            display: none;
+            z-index: 1000; /* Sicherstellen, dass der Banner über allem anderen liegt */
             padding: 10px;
             text-align: center;
         }
@@ -32,7 +32,7 @@
             background-color: #0056b3;
         }
 
-        /* Stil für den fixierten KI-Assistenten-Button */
+        /* Stil für den KI-Assistenten-Button */
         #chatButton {
             position: fixed;
             bottom: 20px;
@@ -47,33 +47,31 @@
             border-radius: 50%;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             cursor: pointer;
-            z-index: 1000; /* Button liegt über allen anderen Elementen */
+            z-index: 999; /* Direkt unter dem Cookie-Banner */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
 
-        /* Stil für das Bild */
+        /* Stil für das Bild im Button */
         #chatButton img {
             width: 50%;
             height: auto;
-            margin-top: 5px;
             pointer-events: none; /* Verhindert, dass das Bild anklickbar ist */
         }
 
-        /* Stil für den Text im Button */
         #chatButton span {
-            line-height: 1.2;
+            margin-bottom: 5px;
         }
     </style>
 </head>
 <body>
 
-    <!-- KI-Assistent-Button -->
-    <div id="chatButton">
+    <!-- KI-Assistent Button -->
+    <div id="chatButton" onclick="showCookieBanner()" title="KI-Assistent">
         <span>KI<br>Assistent</span>
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0BAMAAADP4xsBAAAAMFBMVEUAlNf///8ArOGx5fYAm9ns+PYzudUApNQXntIEq+I8w9NYyN9ozdqV2ePAAAAA3RSTlMA+/v7+/v7+/v7KIpGoZgAAAGnSURBVHgB7dfBCQAgFETRqbpUVtqxRfp7nA0I1Ro+/hXyQGBw/H4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4e
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0BAMAAADP4xsBAAAAMFBMVEUAlNf///8ArOGx5fYAm9ns+PYzudUApNQXntIEq+I8w9NYyN9ozdqV2ePAAAAA3RSTlMA+/v7+/v7+/v7KIpGoZgAAAGnSURBVHgB7dfBCQAgFETRqbpUVtqxRfp7nA0I1Ro+/hXyQGBw/H4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4e
     <!-- Cookie-Consent-Banner -->
     <div id="cookieBanner">
         <p>Wir verwenden Cookies, um Ihr Erlebnis auf unserer Website zu verbessern. Einige Daten werden an Drittanbieter (z.B. Voiceflow) übermittelt.
