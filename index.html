@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KI-Assistent Button Test</title>
+    <title>KI-Assistent mit Cookie-Banner</title>
     <style>
         /* Stil für den KI-Assistenten-Button */
         #chatButton {
@@ -36,16 +36,71 @@
         #chatButton span {
             margin-bottom: 5px;
         }
+
+        /* Stil für den Cookie-Consent-Banner */
+        #cookieBanner {
+            background-color: #fff;
+            border-top: 1px solid #ccc;
+            color: #000;
+            font-size: 14px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: none; /* Banner ist versteckt, bis er gebraucht wird */
+            z-index: 1000;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #cookieBanner button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        #cookieBanner button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
 
     <!-- KI-Assistent Button -->
-    <div id="chatButton">
+    <div id="chatButton" onclick="showCookieBanner()">
         <span>KI<br>Assistent</span>
-        <!-- Hier kommt das eingebettete Base64-Bild -->
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0BAMAAADP4xsBAAAAMFBMVEUAlNf///8ArOGx5fYAm9ns+P1Xy+zF7PcAotyH2PEAvebZ8voAtuRw0e6c3/M4xOlxVSWUAAAFN0lEQVRo3u2aWegNURzHf8a1b/0wuNZrLMlStiyhroRCGCRk3/fcElEYD15EISJ5sC9vtsKDQihvlgfygsgDD5ayPEl3jnvOzJwzZ86ZO1Mezufp3+3e3/zO93d+yznzB4PBYDAYDAaDwWBQxHKc/ssdpx9ky8BNw5By4+P3clbubq5gBHvcZaifaS9RyOLv9Xq8BmO58xDqYNA1lPEpteZNN2ACxXuQipbvMJEuayEFM66hCkdAm0kuqjE0L8v6ttu4qM4Jre18DXVYCcoU3qEWXUqgyiPUpLtq7kxHbWZlLjTjKajwDVPQUUWSZkjIXpJCBVNhn4YkJmNKOmceQ0aS230wNZ2zV5q5naR0Xm4PwXqQlZJWGMfu9Y7fLp2LL+I1mwPxnEExI0L+DFzhxqSkpIWLf9L9PLdF/7ialaQJithZFrX7YyigbXxh0mnZTwSOdylr6GHHN74Zgq8vBTGtBZZX6iVBJxDTEzmOSlOXrzdF5XwZlVBwVLPGwijXQY6FHIfUpO4miLdTzUiPppii2HujISxFnfw5srqSwmG88dqLaXbdQMQyDDMcQuw/jj4ffINdTonDY4OIa7LnN33JRiVisHt1bJ+KUe7JY8K30ZYB92b9M2gfAbBclTg25pp/jFi2Z9HqwgdyJvA0lEyILTHIFjiMhLleK5UK1QCDbA3qDBMxSAe2mYpeNJA94tOcn7Na3o5sHrvMNl1xQLS4J3WYOQGfhwwukGBtc66QP5ZSgRI7DR+pUvDzr22wykI6H88EF2MBnnfitj8A0WtCH0cC2JV9mceT172nwR5vw3hiD6D52CYkm5ZpTQxDRH3IqiC2IxHe4od6PyL5RMM0k484SLjgG/rmx843Xfa14U0vXr3OjTWNjMFUDrKNl9V+0nIs+ANOwDTNeWgsMc3PhYdDppluRH1Kd1KTnsWZrvBykcwoEtNfqW7Ea/5a5JlCGEvUaRK0+6ykWVwY59fKaHNUN93q334hhjqxhRRZ6nZ8znIrzjStZmzt95FQbkRcpZWm87+1o/3JC+QWQZ7oV8mY4dYaRzM6k5DS34kExv4S8LCXpIP1jOZ5Y9o4LCLMebDI0t42rUpxMrj0S/iPdvKGbvshb0QbRy0Ot2qxaIyjv4c65yppS28RbQR72SLIiphjVjhWZDGErgkH6O6habtLZN6YB2GaV5DRHgix/e9DNYx0Oy4tVCSHuINuuHHyFLgGZr2grbRP/IB0DkN8BQHvBJOk41xcvXpjP3q+5g4s1jG+E/Dcl833E7DGgpAY9JFs78VtESZJJGF/1H7rBVz+pXjibYMhil44FBvI3inJ74mvgoiCK7UNfUfi7JNlNrlSlbkoJk/BxRLE0pJMrqqnu6ncF3+DGGuF5uVCc+TYJnL8wAuMY4vOlcWIB5Fz6+PPaa4t9qGIdh+/9/4XaOfne4yBJWrC9uPjM2zYGEzkZi6XOEwP+R7J4fLJcrEeDoGEM1gHHUFGc0wFa3vJbudxz9wqF6eZ2+mdzkftrRm/3mAUZU6z40salmb+7oTdFuTzioM142RJ8pGDjL+aDIW8TC8BZfZlve8Y7zIOIcPSs8y3lox6TVHHMixDdRZ5oEFTlMBf9uvQEFXp8gr0uI+K7JLKnHyXvh1jWHwZKGlSseNvmCacSnd8B332IuNuiUyQkUnvxhu5FMnDmX2KqeSsXjHMZ/Tqs7p2+ZNp99OQKSwV95QhY5bp/buKfiouStYz5dY7BTnQhrxfzINCBfd4kA9T1oLBYDAYDAaDwWAw/O/8BUX5CVAzIEV2AAAAAElFTkSuQmCC" alt="Logo">
     </div>
 
+    <!-- Cookie-Consent-Banner -->
+    <div id="cookieBanner">
+        <p>Wir verwenden Cookies, um Ihr Erlebnis auf unserer Website zu verbessern. Einige Daten werden an Drittanbieter (z.B. Voiceflow) übermittelt.
+            <a href="/datenschutz" target="_blank">Mehr erfahren</a>
+        </p>
+        <button id="acceptCookies" style="margin-right: 10px;">Akzeptieren</button>
+        <button id="declineCookies">Ablehnen</button>
+    </div>
+
+    <!-- JavaScript zur Steuerung des Cookie-Banners -->
+    <script>
+        function showCookieBanner() {
+            document.getElementById('cookieBanner').style.display = 'block';
+        }
+
+        document.getElementById('acceptCookies').addEventListener('click', function () {
+            // Cookies akzeptiert, der Cookie-Banner verschwindet
+            document.getElementById('cookieBanner').style.display = 'none';
+            alert('Cookies akzeptiert!'); // Ersetze dies durch das Laden des Chatbots
+        });
+
+        document.getElementById('declineCookies').addEventListener('click', function () {
+            // Cookies abgelehnt, der Cookie-Banner verschwindet
+            document.getElementById('cookieBanner').style.display = 'none';
+            alert('Cookies abgelehnt!');
+        });
+    </script>
+
 </body>
 </html>
+
