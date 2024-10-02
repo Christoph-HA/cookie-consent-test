@@ -3,35 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KI-Assistent mit Cookie Consent</title>
+    <title>KI-Assistent Button Test</title>
     <style>
-        /* Stil für das Cookie-Banner */
-        #cookieBanner {
-            background-color: #fff;
-            border-top: 1px solid #ccc;
-            color: #000;
-            font-size: 14px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            display: none;
-            z-index: 1000; /* Sicherstellen, dass der Banner über allem anderen liegt */
-            padding: 10px;
-            text-align: center;
-        }
-
-        #cookieBanner button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        #cookieBanner button:hover {
-            background-color: #0056b3;
-        }
-
         /* Stil für den KI-Assistenten-Button */
         #chatButton {
             position: fixed;
@@ -47,7 +20,6 @@
             border-radius: 50%;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             cursor: pointer;
-            z-index: 999; /* Direkt unter dem Cookie-Banner */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -58,7 +30,7 @@
         #chatButton img {
             width: 50%;
             height: auto;
-            pointer-events: none; /* Verhindert, dass das Bild anklickbar ist */
+            pointer-events: none; /* Bild ist nicht anklickbar */
         }
 
         #chatButton span {
@@ -69,97 +41,12 @@
 <body>
 
     <!-- KI-Assistent Button -->
-    <div id="chatButton" onclick="showCookieBanner()" title="KI-Assistent">
+    <div id="chatButton">
         <span>KI<br>Assistent</span>
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0BAMAAADP4xsBAAAAMFBMVEUAlNf///8ArOGx5fYAm9ns+PYzudUApNQXntIEq+I8w9NYyN9ozdqV2ePAAAAA3RSTlMA+/v7+/v7+/v7KIpGoZgAAAGnSURBVHgB7dfBCQAgFETRqbpUVtqxRfp7nA0I1Ro+/hXyQGBw/H4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4e
-    <!-- Cookie-Consent-Banner -->
-    <div id="cookieBanner">
-        <p>Wir verwenden Cookies, um Ihr Erlebnis auf unserer Website zu verbessern. Einige Daten werden an Drittanbieter (z.B. Voiceflow) übermittelt.
-            <a href="/datenschutz" target="_blank">Mehr erfahren</a>
-        </p>
-        <button id="acceptCookies" style="margin-right: 10px;">Akzeptieren</button>
-        <button id="declineCookies">Ablehnen</button>
+        <!-- Rest des KI-Assistenten-Buttons -->
+        <img src="data:image/png;base64,DEIN_LOGO_BASE64_ENCODED_BILD_HIER" alt="Logo">
     </div>
-
-    <!-- JavaScript zur Steuerung -->
-    <script>
-    // Funktion, um den Cookie-Banner anzuzeigen und den KI-Assistent Button zu verstecken
-    function showCookieBanner() {
-        document.getElementById('cookieBanner').style.display = 'block'; // Cookie-Banner anzeigen
-        document.getElementById('chatButton').style.display = 'none'; // KI-Assistent Button ausblenden
-    }
-
-    // Funktion zum Setzen des Cookies mit Ablaufdatum
-    function setCookieWithExpiry(name, value, days) {
-        var now = new Date();
-        now.setTime(now.getTime() + (days * 24 * 60 * 60 * 1000)); // Tage in Millisekunden
-        localStorage.setItem(name, JSON.stringify({ value: value, expiry: now.getTime() }));
-    }
-
-    // Funktion zum Überprüfen und Abrufen des Cookies mit Ablaufdatum
-    function getCookieWithExpiry(name) {
-        var itemStr = localStorage.getItem(name);
-        if (!itemStr) {
-            return null;
-        }
-        var item = JSON.parse(itemStr);
-        if (new Date().getTime() > item.expiry) {
-            localStorage.removeItem(name); // Lösche abgelaufene Cookies
-            return null;
-        }
-        return item.value;
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        var cookieConsent = getCookieWithExpiry('cookieConsent');
-
-        // Zuerst prüfen, ob keine Zustimmung vorhanden ist, und nur dann den KI-Assistenten anzeigen
-        if (!cookieConsent) {
-            document.getElementById('chatButton').style.display = 'block'; // KI-Assistent Button anzeigen
-        }
-
-        // Überprüfen, ob der Benutzer bereits zugestimmt hat
-        if (cookieConsent === 'accepted') {
-            loadVoiceflowScript(); // Voiceflow-Agent laden
-        }
-
-        // Wenn der Benutzer "Nein" gesagt hat, bleibt der KI-Assistent Button sichtbar
-        if (cookieConsent === 'declined') {
-            document.getElementById('chatButton').style.display = 'block'; // KI-Assistent Button anzeigen
-        }
-
-        // Aktion bei "Akzeptieren"
-        document.getElementById('acceptCookies').addEventListener('click', function () {
-            setCookieWithExpiry('cookieConsent', 'accepted', 1); // Cookie für 1 Tag setzen
-            document.getElementById('cookieBanner').style.display = 'none';
-            document.getElementById('chatButton').style.display = 'none'; // KI-Assistent Button verstecken
-            loadVoiceflowScript(); // Voiceflow-Skript wird geladen
-        });
-
-        // Aktion bei "Ablehnen"
-        document.getElementById('declineCookies').addEventListener('click', function () {
-            setCookieWithExpiry('cookieConsent', 'declined', 1); // Cookie für 1 Tag setzen
-            document.getElementById('cookieBanner').style.display = 'none';
-            document.getElementById('chatButton').style.display = 'block'; // KI-Assistent Button wieder anzeigen
-        });
-    });
-
-    // Funktion zum Laden des Voiceflow-Skripts
-    function loadVoiceflowScript() {
-        console.log('Voiceflow-Skript wird geladen');
-        var script = document.createElement('script');
-        script.async = true;  // Asynchrones Laden
-        script.src = 'https://cdn.voiceflow.com/widget/bundle.mjs';
-        script.onload = function() {
-            window.voiceflow.chat.load({
-                verify: { projectID: '66cd9b07fa8572fbb856b6c7' }, // Deine Projekt-ID
-                url: 'https://general-runtime.voiceflow.com',
-                versionID: 'production'
-            });
-        };
-        document.body.appendChild(script);
-    }
-    </script>
 
 </body>
 </html>
